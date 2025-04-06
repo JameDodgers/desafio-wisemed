@@ -32,6 +32,17 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Poppins-Regular.ttf",
+            "./assets/fonts/Poppins-Medium.ttf",
+            "./assets/fonts/Poppins-Semibold.ttf",
+            "./assets/fonts/Overpass-Regular.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
