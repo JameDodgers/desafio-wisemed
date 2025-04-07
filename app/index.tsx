@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 import BonesIcon from "@/assets/images/JointsBone.svg";
 import AnestesiaIcon from "@/assets/images/Icon_Anestesia.svg";
 import CardioIcon from "@/assets/images/Icon_Cardio.svg";
 import FaceIcon from "@/assets/images/face_24px.svg";
+import { Picker, PickerRef } from "./components/Picker";
 
 const API_URL =
   "https://wisemed-interview.s3.us-east-2.amazonaws.com/react-native/emergency-kinds.json";
@@ -16,11 +17,11 @@ type EmergencyKind = {
   name: string;
 };
 
-type GetEmergencyKindsResponseData = EmergencyKind[];
+type GetEmergencyKindsResponseData = { emergencyKinds: EmergencyKind[] };
 
 const doctor = {
   name: "Dr. José Pedro Sans",
-  speciality: "",
+  speciality: "Traumatología",
 };
 
 const pacient = {
@@ -35,7 +36,12 @@ const pacient = {
 };
 
 export default function Index() {
+  const pickerRef = useRef<PickerRef>(null);
   const [emergencyKinds, setEmergencyKinds] = useState<EmergencyKind[]>();
+
+  const [selectedEmergencyKindId, setSelectedEmergencyKindId] = useState<
+    number | null
+  >();
 
   useEffect(() => {
     const getEmergencyKinds = async () => {
@@ -44,65 +50,70 @@ export default function Index() {
           API_URL
         );
 
-        setEmergencyKinds(response.data);
+        setEmergencyKinds(response.data.emergencyKinds);
       } catch (e) {}
     };
 
     getEmergencyKinds();
   }, []);
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#CAC4D0",
-      }}
-    >
-      <View style={styles.popup}>
-        <View style={styles.popupHeader}>
-          <View>
-            <Text style={styles.speciality}>Traumatología</Text>
-            <Text style={styles.doctorName}>Dr. José Pedro Sans</Text>
-          </View>
-          <BonesIcon
-            width={50}
-            height={50}
-            style={{ transform: [{ rotate: "-10deg" }] }}
-          />
-        </View>
-        <View style={styles.popupBody}>
-          <View style={styles.row}>
-            <FaceIcon />
-            <Text style={styles.pacientName}>
-              <Text>{pacient.name}</Text>
-              {"\n"}
-              <Text>{pacient.age} años</Text>
-            </Text>
-          </View>
+  const closeDropDownMenu = () => pickerRef.current?.hide();
 
-          <View>
-            <Info title="Ficha médica: " value={pacient.medicalRecord} />
-            <Info title="Diagnóstico: " value={pacient.diagnosis} />
-            <Info title="Intervención: " value={pacient.intervention} />
-            <Info
-              title="Evaluación preanestésica: "
-              value={pacient.preAnestheticEvaluation}
+  return (
+    <TouchableNativeFeedback onPress={closeDropDownMenu}>
+      <View style={styles.container}>
+        <View style={styles.popup}>
+          <View style={styles.popupHeader}>
+            <View>
+              <Text style={styles.speciality}>{doctor.speciality}</Text>
+              <Text style={styles.doctorName}>{doctor.name}</Text>
+            </View>
+            <BonesIcon
+              width={50}
+              height={50}
+              style={{ transform: [{ rotate: "-10deg" }] }}
             />
-            <Info
-              title="Tiempo de solicitud: "
-              value={pacient.requestTimeDays}
-            />
-            <Info title="Suspensiones: " value={pacient.suspensions} />
           </View>
-          <View style={styles.icons}>
-            <CardioIcon />
-            <AnestesiaIcon />
+          <View style={styles.popupBody}>
+            <View style={styles.row}>
+              <FaceIcon />
+              <Text style={styles.pacientName}>
+                <Text>{pacient.name}</Text>
+                {"\n"}
+                <Text>{pacient.age} años</Text>
+              </Text>
+            </View>
+            <View>
+              <Info title="Ficha médica: " value={pacient.medicalRecord} />
+              <Info title="Diagnóstico: " value={pacient.diagnosis} />
+              <Info title="Intervención: " value={pacient.intervention} />
+              <Info
+                title="Evaluación preanestésica: "
+                value={pacient.preAnestheticEvaluation}
+              />
+              <Info
+                title="Tiempo de solicitud: "
+                value={pacient.requestTimeDays}
+              />
+              <Info title="Suspensiones: " value={pacient.suspensions} />
+            </View>
+            <View style={styles.icons}>
+              <CardioIcon />
+              <AnestesiaIcon />
+            </View>
+
+            <Picker
+              ref={pickerRef}
+              label="Tipo de Urgencia"
+              options={emergencyKinds}
+              onSelect={(selectedItem) =>
+                setSelectedEmergencyKindId(selectedItem.id)
+              }
+            />
           </View>
         </View>
       </View>
-    </View>
+    </TouchableNativeFeedback>
   );
 }
 
@@ -119,17 +130,32 @@ const Info = ({ title, value }: InfoProps) => (
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#CAC4D0",
+    shadowColor: "#000",
+  },
   row: {
     flexDirection: "row",
-    gap: 8,
+    gap: 4,
   },
   icons: {
     flexDirection: "row",
+    marginBottom: 8,
   },
   popup: {
     backgroundColor: "white",
     borderRadius: 5,
     minWidth: 276,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
   },
   popupBody: {
     borderBottomRightRadius: 5,
@@ -145,16 +171,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#154FBF",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingLeft: 20,
+    paddingRight: 16,
     paddingVertical: 8,
   },
   speciality: {
     fontSize: 16,
-    fontFamily: "Poppins-Semibold",
+    fontFamily: "Poppins-SemiBold",
     color: "white",
   },
   doctorName: {
-    fontFamily: "Poppins-Semibold",
+    fontFamily: "Poppins-SemiBold",
     fontSize: 12,
     color: "white",
   },
