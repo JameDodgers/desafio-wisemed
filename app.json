@@ -40,7 +40,7 @@
           "fonts": [
             "./assets/fonts/Poppins-Regular.ttf",
             "./assets/fonts/Poppins-Medium.ttf",
-            "./assets/fonts/Poppins-Semibold.ttf",
+            "./assets/fonts/Poppins-SemiBold.ttf",
             "./assets/fonts/Overpass-Regular.ttf"
           ]
         }
