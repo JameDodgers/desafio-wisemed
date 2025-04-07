@@ -12,7 +12,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1FC8AF7443F84C4E980D4C04 /* Overpass-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED2BC1CCFA9440189D1E7FED /* Overpass-Regular.ttf */; };
-		2B9CCF33152B4403BBE779C9 /* Poppins-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD3BC697C2C44F5583D36327 /* Poppins-Semibold.ttf */; };
 		3888AF648795C9053EB08763 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1D038C0E61FEC7177D913DE /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		96905EF65AED1B983A6B3ABC /* libPods-desafiowisemed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-desafiowisemed.a */; };
@@ -20,6 +19,7 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		C1B7CCCC406D435DBA0C44A6 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8F382F1DF8C4CA788A156B7 /* Poppins-Medium.ttf */; };
+		DF534DC0A4D744B2BFFBC417 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F1DBAD4331441C0A7870C09 /* Poppins-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2BC1CCFA9440189D1E7FED /* Overpass-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Overpass-Regular.ttf"; path = "../assets/fonts/Overpass-Regular.ttf"; sourceTree = "<group>"; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-desafiowisemed/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		FD3BC697C2C44F5583D36327 /* Poppins-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Semibold.ttf"; path = "../assets/fonts/Poppins-Semibold.ttf"; sourceTree = "<group>"; };
+		5F1DBAD4331441C0A7870C09 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +88,8 @@
 			children = (
 				15906D5C0D9747E5BF10C602 /* Poppins-Regular.ttf */,
 				B8F382F1DF8C4CA788A156B7 /* Poppins-Medium.ttf */,
-				FD3BC697C2C44F5583D36327 /* Poppins-Semibold.ttf */,
 				ED2BC1CCFA9440189D1E7FED /* Overpass-Regular.ttf */,
+				5F1DBAD4331441C0A7870C09 /* Poppins-SemiBold.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -226,9 +226,9 @@
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				A1FA9B90C53B4A7E88ECE33D /* Poppins-Regular.ttf in Resources */,
 				C1B7CCCC406D435DBA0C44A6 /* Poppins-Medium.ttf in Resources */,
-				2B9CCF33152B4403BBE779C9 /* Poppins-Semibold.ttf in Resources */,
 				1FC8AF7443F84C4E980D4C04 /* Overpass-Regular.ttf in Resources */,
 				3888AF648795C9053EB08763 /* PrivacyInfo.xcprivacy in Resources */,
+				DF534DC0A4D744B2BFFBC417 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +388,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pablohenrique.desafio-wisemed";
-				PRODUCT_NAME = desafiowisemed;
+				PRODUCT_NAME = "desafiowisemed";
 				SWIFT_OBJC_BRIDGING_HEADER = "desafiowisemed/desafiowisemed-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -416,7 +416,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pablohenrique.desafio-wisemed";
-				PRODUCT_NAME = desafiowisemed;
+				PRODUCT_NAME = "desafiowisemed";
 				SWIFT_OBJC_BRIDGING_HEADER = "desafiowisemed/desafiowisemed-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
